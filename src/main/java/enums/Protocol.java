@@ -1,4 +1,4 @@
-package src.main.java.model.enums;
+package src.main.java.enums;
 
 public enum Protocol {
     HOPOPT(0),
