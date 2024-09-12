@@ -7,14 +7,14 @@ import java.util.List;
 
 import src.main.java.model.FlowLog;
 
-public class FlowLogParser {
-    String fileName;
+public class FlowLogParser extends FileParser {
 
     public FlowLogParser(String fileName) {
-        this.fileName = fileName;
+        super(fileName);
     }
 
-    public List<FlowLog> parseLog() {
+    @Override
+    public List<FlowLog> parse() throws Exception {
         List<FlowLog> flowLogs = new ArrayList<FlowLog>();
         try (BufferedReader br = new BufferedReader(new FileReader(this.fileName))) {
             String line;
@@ -37,14 +37,13 @@ public class FlowLogParser {
                 flowLog.setLogStatus(parts[13].trim());
 
                 flowLogs.add(flowLog);
-                // sb.append(line);
-                // sb.append(System.lineSeparator());
             }
-            return flowLogs;
         } catch (Exception e) {
             System.out.println(String.format("Error reading file due to %s", e));
-            return null;
+            throw new Exception(e);
         }
+        return flowLogs;
+
     }
 
 }

@@ -1,4 +1,3 @@
-Decimal,Keyword,Protocol,IPv6 Extension Header,Reference
 0,HOPOPT,IPv6 Hop-by-Hop Option,Y,[RFC8200]
 1,ICMP,Internet Control Message,,[RFC792]
 2,IGMP,Internet Group Management,,[RFC1112]
@@ -145,7 +144,6 @@ Decimal,Keyword,Protocol,IPv6 Extension Header,Reference
 143,Ethernet,Ethernet,,[RFC8986]
 144,AGGFRAG,AGGFRAG encapsulation payload for ESP,,[RFC9347]
 145,NSH,Network Service Header,N,[RFC9491]
-146-252,,Unassigned,,[Internet_Assigned_Numbers_Authority]
 253,,Use for experimentation and testing,Y,[RFC3692]
 254,,Use for experimentation and testing,Y,[RFC3692]
 255,Reserved,,,[Internet_Assigned_Numbers_Authority]

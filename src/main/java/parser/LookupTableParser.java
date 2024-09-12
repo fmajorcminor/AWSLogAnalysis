@@ -7,19 +7,15 @@ import java.util.Map;
 
 import src.main.java.model.LookupRow;
 
-public class LookupTableParser {
-    String fileName;
-    Map<Map<String, String>, String> lookupFields = new HashMap<Map<String, String>, String>();
+public class LookupTableParser extends FileParser {
 
     public LookupTableParser(String fileName) {
-        this.fileName = fileName;
+        super(fileName);
     }
 
-    public Map<Map<String, String>, String> getLookupFields() {
-        return this.lookupFields;
-    }
-
-    public void parseLookupTable() {
+    @Override
+    public Map<Map<String, String>, String> parse() throws Exception {
+        Map<Map<String, String>, String> lookupFields = new HashMap<Map<String, String>, String>();
         try (BufferedReader br = new BufferedReader(new FileReader(this.fileName))) {
             String line;
 
@@ -28,19 +24,15 @@ public class LookupTableParser {
 
                 LookupRow lookupRow = new LookupRow();
                 lookupRow.setDstPort(parts[0].strip());
-                lookupRow.setProtocol(parts[1].strip());
-                lookupRow.setTag(parts[2].strip());
+                lookupRow.setProtocol(parts[1].strip().toLowerCase());
+                lookupRow.setTag(parts[2].strip().toLowerCase());
 
                 lookupFields.put(Map.of(lookupRow.getDstPort(), lookupRow.getProtocol()), lookupRow.getTag());
             }
         } catch (Exception e) {
-            System.out.println(String.format("Error reading file due to %s", e));
+            throw new Exception(e);
         }
-    }
-
-    @Override
-    public String toString() {
-        return "LookupTableParser [lookupFields=" + lookupFields + "]";
+        return lookupFields;
     }
 
 }
